@@ -62,6 +62,31 @@ public class SinglyLinkedList {
         return currentNode;
     }
 
+    // If there are no nodes, return null
+    // Store the current head property in a variable
+    // Set the head property to be the current head's next property
+    // Decrement the length by 1
+    // Return the node removed
+    // Edge case: When there is only one node in the list
+    public Node shift() {
+        Node currentNode = this.head;
+
+        if (length == 0) {
+            return null;
+        } else if (length == 1) {
+            this.head = null;
+            this.tail = null;
+            this.length--;
+            return currentNode;
+        }
+
+        this.head = currentNode.getNext();
+        currentNode.setNext(null);
+        this.length--;
+
+        return currentNode;
+    }
+
     @Override
     public String toString() {
         return this.head != null ? this.head.toString() : "";

@@ -29,7 +29,7 @@ class SinglyLinkedListTest {
         assertEquals(list.pop().toString(), "There");
         assertEquals(list.getHead(), list.getTail());
 
-        // List will be empty after popping last node
+        // List will be empty after popping final node
         assertEquals(list.pop().toString(), "Hi");
         assertNull(list.getHead());
         assertNull(list.getTail());
@@ -37,5 +37,21 @@ class SinglyLinkedListTest {
 
         // Popping an empty list should result in a null value returned
         assertNull(list.pop());
+    }
+
+    @Test
+    void testShift() {
+        // List will have one more node after shifting
+        assertEquals(list.shift().toString(), "Hi");
+        assertEquals(list.getHead(), list.getTail());
+
+        // List will be empty after shifting final node
+        assertEquals(list.shift().toString(), "There");
+        assertNull(list.getHead());
+        assertNull(list.getTail());
+        assertEquals(list.getLength(), 0);
+
+        // Shifting an empty list should result in a null value returned
+        assertNull(list.shift());
     }
 }
