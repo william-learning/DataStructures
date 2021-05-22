@@ -16,6 +16,7 @@ public class SinglyLinkedList {
     // Otherwise, set next property on the tail to be the newly created node
     // Set the tail property to be the newly created node
     // Increment length by 1
+    // Return the list
     public <T> SinglyLinkedList push(final T val) {
         final Node newNode = new Node(val);
 
@@ -85,6 +86,27 @@ public class SinglyLinkedList {
         this.length--;
 
         return currentNode;
+    }
+
+    // Create a new node using the value passed to the function
+    // If there is no head, set the head and tail to be the newly created node
+    // Otherwise, set next property on the newly created node to be the the current head
+    // Set the head property to be the newly created node
+    // Increment length by 1
+    // Return the list
+    public <T> SinglyLinkedList unshift(T val) {
+        final Node newNode = new Node(val);
+
+        if (this.head == null) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            newNode.setNext(this.head);
+            this.head = newNode;
+        }
+
+        this.length++;
+        return this;
     }
 
     @Override

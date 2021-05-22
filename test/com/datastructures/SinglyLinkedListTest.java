@@ -21,6 +21,13 @@ class SinglyLinkedListTest {
     void testPush() {
         list.push("SinglyLinkedList");
         assertEquals(list.toString(), "HiThereSinglyLinkedList");
+
+        // Test push() for an empty list
+        list = new SinglyLinkedList();
+        list.push("SinglyLinkedList");
+        assertEquals(list.toString(), "SinglyLinkedList");
+        assertEquals(list.getHead(), list.getTail());
+        assertEquals(list.getLength(), 1);
     }
 
     @Test
@@ -53,5 +60,18 @@ class SinglyLinkedListTest {
 
         // Shifting an empty list should result in a null value returned
         assertNull(list.shift());
+    }
+
+    @Test
+    void testUnshift() {
+        list.unshift("SinglyLinkedList");
+        assertEquals(list.toString(), "SinglyLinkedListHiThere");
+
+        // Test unshift() for an empty list
+        list = new SinglyLinkedList();
+        list.unshift("SinglyLinkedList");
+        assertEquals(list.toString(), "SinglyLinkedList");
+        assertEquals(list.getHead(), list.getTail());
+        assertEquals(list.getLength(), 1);
     }
 }
