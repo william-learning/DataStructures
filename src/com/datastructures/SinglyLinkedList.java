@@ -109,6 +109,22 @@ public class SinglyLinkedList {
         return this;
     }
 
+    // Function accepts an index as argument
+    // Edge case: If the index is less than 0 or greater than or equal to the length of the list, return null
+    // Loop through the list until the index is reached
+    // Return the node at that index
+    public Node get(final int index) {
+        if (index < 0 || index >= this.length) {
+            return null;
+        }
+
+        Node currentNode = this.head;
+        for (int i = 0; i < index; i++) {
+            currentNode = currentNode.getNext();
+        }
+        return currentNode;
+    }
+
     @Override
     public String toString() {
         return this.head != null ? this.head.printAllNodes() : "";
