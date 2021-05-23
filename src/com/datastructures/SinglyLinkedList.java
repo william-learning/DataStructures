@@ -70,11 +70,11 @@ public class SinglyLinkedList {
     // Return the node removed
     // Edge case: When there is only one node in the list
     public Node shift() {
-        Node currentNode = this.head;
+        final Node currentNode = this.head;
 
-        if (length == 0) {
+        if (this.length == 0) {
             return null;
-        } else if (length == 1) {
+        } else if (this.length == 1) {
             this.head = null;
             this.tail = null;
             this.length--;
@@ -94,7 +94,7 @@ public class SinglyLinkedList {
     // Set the head property to be the newly created node
     // Increment length by 1
     // Return the list
-    public <T> SinglyLinkedList unshift(T val) {
+    public <T> SinglyLinkedList unshift(final T val) {
         final Node newNode = new Node(val);
 
         if (this.head == null) {
@@ -111,7 +111,7 @@ public class SinglyLinkedList {
 
     @Override
     public String toString() {
-        return this.head != null ? this.head.toString() : "";
+        return this.head != null ? this.head.printAllNodes() : "";
     }
 
 

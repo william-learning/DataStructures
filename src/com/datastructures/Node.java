@@ -4,32 +4,36 @@ public class Node<T> {
     private T val;
     private Node next;
 
-    public Node(T val) {
+    public Node(final T val) {
         this.val = val;
         this.next = null;
     }
 
     public T getVal() {
-        return val;
+        return this.val;
     }
 
-    public void setVal(T val) {
+    public void setVal(final T val) {
         this.val = val;
     }
 
     public Node getNext() {
-        return next;
+        return this.next;
     }
 
-    public void setNext(Node next) {
+    public void setNext(final Node next) {
         this.next = next;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder(val.toString());
-        if (next != null) {
-            sb.append(next.toString());
+        return this.val.toString();
+    }
+
+    public String printAllNodes() {
+        final StringBuilder sb = new StringBuilder(this.val.toString());
+        if (this.next != null) {
+            sb.append(this.next.printAllNodes());
         }
         return sb.toString();
     }
