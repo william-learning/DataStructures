@@ -18,7 +18,7 @@ public class SinglyLinkedList {
     // Increment length by 1
     // Return the list
     public <T> SinglyLinkedList push(final T val) {
-        final Node newNode = new Node(val);
+        final Node newNode = new Node<>(val);
 
         if (this.head == null) {
             this.head = newNode;
@@ -95,7 +95,7 @@ public class SinglyLinkedList {
     // Increment length by 1
     // Return the list
     public <T> SinglyLinkedList unshift(final T val) {
-        final Node newNode = new Node(val);
+        final Node newNode = new Node<>(val);
 
         if (this.head == null) {
             this.head = newNode;
@@ -135,6 +135,35 @@ public class SinglyLinkedList {
         } else {
             final Node node = get(index);
             node.setVal(val);
+            return true;
+        }
+    }
+
+    // Edge case: If index is less than 0 or greater than the length, return false
+    // Edge case: If index is equal to 0, unshift a new node to the start of the list
+    // Edge case: If index is equal to length, push a new node to end of the list
+    // Otherwise, use the get method to access the node at index - 1
+    // Set the next property on that node to be the new node
+    // Set the next property on the new node to be the previous next
+    // Increment the length
+    // Return true
+
+    public <T> boolean insert(final int index, final T val) {
+        if (index < 0 || index > this.length) {
+            return false;
+        } else if (index == 0) {
+            unshift(val);
+            return true;
+        } else if (index == this.length) {
+            push(val);
+            return true;
+        } else {
+            final Node previousNode = get(index - 1);
+            final Node newNode = new Node<>(val);
+
+            newNode.setNext(previousNode.getNext());
+            previousNode.setNext(newNode);
+            this.length++;
             return true;
         }
     }

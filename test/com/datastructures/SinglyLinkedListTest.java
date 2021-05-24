@@ -92,4 +92,34 @@ class SinglyLinkedListTest {
         assertFalse(list.set(-1, "ShouldNotWork"));
         assertFalse(list.set(2, "ShouldNotWork"));
     }
+
+    @Test
+    void testInsert() {
+        assertTrue(list.insert(0, "Hey"));
+        assertEquals(list.toString(), "HeyHiThere");
+        assertEquals(list.getLength(), 3);
+        assertEquals(list.getHead().toString(), "Hey");
+        assertEquals(list.getTail().toString(), "There");
+
+        assertTrue(list.insert(1, "There"));
+        assertEquals(list.toString(), "HeyThereHiThere");
+        assertEquals(list.getLength(), 4);
+        assertEquals(list.getHead().toString(), "Hey");
+        assertEquals(list.getTail().toString(), "There");
+
+        assertTrue(list.insert(2, "List"));
+        assertEquals(list.toString(), "HeyThereListHiThere");
+        assertEquals(list.getLength(), 5);
+        assertEquals(list.getHead().toString(), "Hey");
+        assertEquals(list.getTail().toString(), "There");
+
+        assertTrue(list.insert(5, "SinglyLinkedList"));
+        assertEquals(list.toString(), "HeyThereListHiThereSinglyLinkedList");
+        assertEquals(list.getLength(), 6);
+        assertEquals(list.getHead().toString(), "Hey");
+        assertEquals(list.getTail().toString(), "SinglyLinkedList");
+
+        assertFalse(list.insert(-1, "ShouldNotWork"));
+        assertFalse(list.insert(7, "ShouldNotWork"));
+    }
 }
