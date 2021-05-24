@@ -79,5 +79,8 @@ class SinglyLinkedListTest {
     void testGet() {
         assertEquals(list.get(0).toString(), "Hi");
         assertEquals(list.get(1).toString(), "There");
+
+        assertNull(list.get(-1));
+        assertNull(list.get(2));
     }
 }
