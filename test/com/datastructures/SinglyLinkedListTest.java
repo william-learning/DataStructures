@@ -3,8 +3,7 @@ package com.datastructures;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class SinglyLinkedListTest {
 
@@ -82,5 +81,15 @@ class SinglyLinkedListTest {
 
         assertNull(list.get(-1));
         assertNull(list.get(2));
+    }
+
+    @Test
+    void testSet() {
+        assertTrue(list.set(0, "Hey"));
+        assertTrue(list.set(1, "SinglyLinkedList"));
+        assertEquals(list.toString(), "HeySinglyLinkedList");
+
+        assertFalse(list.set(-1, "ShouldNotWork"));
+        assertFalse(list.set(2, "ShouldNotWork"));
     }
 }

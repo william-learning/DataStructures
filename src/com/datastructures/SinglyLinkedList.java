@@ -125,6 +125,20 @@ public class SinglyLinkedList {
         return currentNode;
     }
 
+    // Accepts an index to set and a value
+    // Use get() method to retrieve node at index
+    // If node is not found, return false
+    // If node is found, set the value of the node to the value provided and return true
+    public <T> boolean set(final int index, final T val) {
+        if (index < 0 || index >= this.length) {
+            return false;
+        } else {
+            final Node node = get(index);
+            node.setVal(val);
+            return true;
+        }
+    }
+
     @Override
     public String toString() {
         return this.head != null ? this.head.printAllNodes() : "";
