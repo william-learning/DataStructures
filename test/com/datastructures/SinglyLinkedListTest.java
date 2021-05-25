@@ -122,4 +122,29 @@ class SinglyLinkedListTest {
         assertFalse(list.insert(-1, "ShouldNotWork"));
         assertFalse(list.insert(7, "ShouldNotWork"));
     }
+
+    @Test
+    void testRemove() {
+        assertTrue(list.insert(0, "Hey"));
+        assertTrue(list.insert(1, "There"));
+        assertTrue(list.insert(2, "List"));
+        assertTrue(list.insert(5, "SinglyLinkedList"));
+        assertEquals(list.toString(), "HeyThereListHiThereSinglyLinkedList");
+
+        assertEquals(list.remove(0).toString(), "Hey");
+        assertEquals(list.toString(), "ThereListHiThereSinglyLinkedList");
+
+        assertEquals(list.remove(4).toString(), "SinglyLinkedList");
+        assertEquals(list.toString(), "ThereListHiThere");
+
+        assertEquals(list.remove(0).toString(), "There");
+        assertEquals(list.toString(), "ListHiThere");
+
+        assertEquals(list.getLength(), 3);
+        assertEquals(list.getHead().toString(), "List");
+        assertEquals(list.getTail().toString(), "There");
+
+        assertNull(list.remove(-1));
+        assertNull(list.remove(3));
+    }
 }

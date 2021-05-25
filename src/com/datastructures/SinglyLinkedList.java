@@ -147,7 +147,6 @@ public class SinglyLinkedList {
     // Set the next property on the new node to be the previous next
     // Increment the length
     // Return true
-
     public <T> boolean insert(final int index, final T val) {
         if (index < 0 || index > this.length) {
             return false;
@@ -165,6 +164,32 @@ public class SinglyLinkedList {
             previousNode.setNext(newNode);
             this.length++;
             return true;
+        }
+    }
+
+    // Edge case: If index is less than 0 or greater than or equal to length, return null
+    // Edge case: If index is equal to 0, shift
+    // Edge case: If index is equal to length - 1, pop
+    // Otherwise, use the get() method to access the node at index - 1
+    // Set the next property of that node to next property of next node
+    // Set the next property of next node to null
+    // Decrement the length
+    // Return the value of the node to be removed
+    public Node remove(final int index) {
+        if (index < 0 || index >= this.length) {
+            return null;
+        } else if (index == 0) {
+            return shift();
+        } else if (index == this.length - 1) {
+            return pop();
+        } else {
+            final Node previousNode = get(index - 1);
+            final Node currentNode = previousNode.getNext();
+
+            previousNode.setNext(currentNode.getNext());
+            currentNode.setNext(null);
+            this.length--;
+            return currentNode;
         }
     }
 
