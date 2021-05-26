@@ -138,10 +138,13 @@ class SinglyLinkedListTest {
         assertEquals(list.toString(), "ThereListHiThere");
 
         assertEquals(list.remove(0).toString(), "There");
-        assertEquals(list.toString(), "ListHiThere");
+        assertEquals(list.unshift("Linked").toString(), "LinkedListHiThere");
+
+        assertEquals(list.remove(2).toString(), "Hi");
+        assertEquals(list.toString(), "LinkedListThere");
 
         assertEquals(list.getLength(), 3);
-        assertEquals(list.getHead().toString(), "List");
+        assertEquals(list.getHead().toString(), "Linked");
         assertEquals(list.getTail().toString(), "There");
 
         assertNull(list.remove(-1));
