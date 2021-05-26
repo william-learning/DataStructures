@@ -150,4 +150,35 @@ class SinglyLinkedListTest {
         assertNull(list.remove(-1));
         assertNull(list.remove(3));
     }
+
+    @Test
+    void testReverse() {
+        assertEquals(list.reverse().toString(), "ThereHi");
+        assertEquals(list.getHead().toString(), "There");
+        assertEquals(list.getTail().toString(), "Hi");
+
+        setup();
+        list.push("Singly");
+        list.push("Linked");
+        list.push("List");
+        assertEquals(list.toString(), "HiThereSinglyLinkedList");
+
+        assertEquals(list.reverse().toString(), "ListLinkedSinglyThereHi");
+        assertEquals(list.getHead().toString(), "List");
+        assertEquals(list.getTail().toString(), "Hi");
+        assertEquals(list.getLength(), 5);
+
+        list = new SinglyLinkedList();
+        assertEquals(list.reverse().toString(), "");
+        assertNull(list.getHead());
+        assertNull(list.getTail());
+        assertEquals(list.getLength(), 0);
+
+        list = new SinglyLinkedList();
+        list.push("Hi");
+        assertEquals(list.reverse().toString(), "Hi");
+        assertEquals(list.getHead(), list.getTail());
+        assertEquals(list.getHead().toString(), "Hi");
+        assertEquals(list.getLength(), 1);
+    }
 }
