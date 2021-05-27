@@ -197,36 +197,30 @@ public class SinglyLinkedList {
     // Edge case: If length is equal to 1, return list
 
     // Otherwise, set head to be tail and tail to be head
-    // Create and set previousNode to new tail
-    // Create and set currentNode to next node of previousNode
-    // Create and set nextNode to next node of currentNode
-    // Set previousNode's next node to null
-    // Set currentNode's next node to previousNode
+    // Create and set currentNode to old head
+    // Create and set previousNode to null
+    // Create nextNode
 
-    // Loop through the list while nextNode is not null
-    // Set previousNode to currentNode
-    // Set currentNode to nextNode
+    // Loop through the list while counter is less than the length
     // Set nextNode to currentNode's next node
     // Set currentNode's next node to previousNode
+    // Set previousNode to currentNode
+    // Set currentNode to nextNode
     public SinglyLinkedList reverse() {
         if (this.length > 1) {
-            final Node temp = this.head;
+            Node currentNode = this.head;
             this.head = this.tail;
-            this.tail = temp;
+            this.tail = currentNode;
 
             // Initialise reverse
-            Node previousNode = this.tail;
-            Node currentNode = previousNode.getNext();
-            Node nextNode = currentNode.getNext();
-            previousNode.setNext(null);
-            currentNode.setNext(previousNode);
+            Node previousNode = null;
+            Node nextNode;
 
-            // When nextNode is null, currentNode is the last node in the list
-            while (nextNode != null) {
-                previousNode = currentNode;
-                currentNode = nextNode;
+            for (int i = 0; i < this.length; i++) {
                 nextNode = currentNode.getNext();
                 currentNode.setNext(previousNode);
+                previousNode = currentNode;
+                currentNode = nextNode;
             }
         }
 
