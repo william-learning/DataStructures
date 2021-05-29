@@ -1,4 +1,4 @@
-package com.datastructures;
+package com.ds.singlylinkedlist;
 
 public class Node<T> {
     private T val;

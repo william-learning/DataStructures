@@ -1,4 +1,4 @@
-package com.datastructures;
+package com.ds.singlylinkedlist;
 
 public class SinglyLinkedList {
     Node head;
