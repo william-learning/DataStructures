@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class DoublyLinkedListTest {
 
@@ -34,5 +35,24 @@ class DoublyLinkedListTest {
         assertEquals(this.list.toString(), "DoublyLinkedList");
         assertEquals(this.list.getHead(), this.list.getTail());
         assertEquals(this.list.getLength(), 1);
+    }
+
+    @Test
+    void testPop() {
+        // List will have one more node after popping
+        Node poppedNode = this.list.pop();
+        assertEquals(poppedNode.toString(), "There");
+        assertNull(poppedNode.getNext());
+        assertNull(poppedNode.getPrev());
+        assertEquals(this.list.getHead(), this.list.getTail());
+
+        // List will be empty after popping final node
+        assertEquals(this.list.pop().toString(), "Hi");
+        assertNull(this.list.getHead());
+        assertNull(this.list.getTail());
+        assertEquals(this.list.getLength(), 0);
+
+        // Popping an empty list should result in a null value returned
+        assertNull(this.list.pop());
     }
 }

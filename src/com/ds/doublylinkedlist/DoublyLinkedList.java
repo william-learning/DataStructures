@@ -19,19 +19,46 @@ public class DoublyLinkedList {
     // Increment the length
     // Return the list
     public <T> DoublyLinkedList push(final T val) {
-        final Node node = new Node<>(val);
+        final Node newNode = new Node<>(val);
 
         if (this.length == 0) {
-            this.head = node;
-            this.tail = node;
+            this.head = newNode;
+            this.tail = newNode;
         } else {
-            this.tail.setNext(node);
-            node.setPrev(this.tail);
-            this.tail = node;
+            this.tail.setNext(newNode);
+            newNode.setPrev(this.tail);
+            this.tail = newNode;
         }
 
         this.length++;
         return this;
+    }
+
+    // Edge case: If the length is equal to 0, return null
+    // Store the tail in a temp variable called lastNode
+    // Edge case: If the length is 1, set the head and tail to be null
+    // Otherwise, update the tail to be the prev node of the old tail
+    // Set the new tail's next to null
+    // Set the lastNode's prev to null
+    // Decrement the length
+    // Return the node
+    public Node pop() {
+        if (this.length == 0) {
+            return null;
+        }
+
+        Node lastNode = this.tail;
+        if (length == 1) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.tail = lastNode.getPrev();
+            this.tail.setNext(null);
+            lastNode.setPrev(null);
+        }
+
+        this.length--;
+        return lastNode;
     }
 
     @Override
