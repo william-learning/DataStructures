@@ -44,6 +44,7 @@ class DoublyLinkedListTest {
         assertEquals(poppedNode.toString(), "There");
         assertNull(poppedNode.getNext());
         assertNull(poppedNode.getPrev());
+        assertNull(this.list.getTail().getNext());
         assertEquals(this.list.getHead(), this.list.getTail());
 
         // List will be empty after popping final node
@@ -54,5 +55,25 @@ class DoublyLinkedListTest {
 
         // Popping an empty list should result in a null value returned
         assertNull(this.list.pop());
+    }
+
+    @Test
+    void testShift() {
+        // List will have one more node after shifting
+        Node shiftedNode = this.list.shift();
+        assertEquals(shiftedNode.toString(), "Hi");
+        assertNull(shiftedNode.getNext());
+        assertNull(shiftedNode.getPrev());
+        assertNull(this.list.getHead().getPrev());
+        assertEquals(this.list.getHead(), this.list.getTail());
+
+        // List will be empty after shifting final node
+        assertEquals(this.list.shift().toString(), "There");
+        assertNull(this.list.getHead());
+        assertNull(this.list.getTail());
+        assertEquals(this.list.getLength(), 0);
+
+        // Shifting an empty list should result in a null value returned
+        assertNull(this.list.shift());
     }
 }

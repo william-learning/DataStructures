@@ -35,11 +35,11 @@ public class DoublyLinkedList {
     }
 
     // Edge case: If the length is equal to 0, return null
-    // Store the tail in a temp variable called lastNode
+    // Store the tail in a temp variable called poppedNode
     // Edge case: If the length is 1, set the head and tail to be null
     // Otherwise, update the tail to be the prev node of the old tail
     // Set the new tail's next to null
-    // Set the lastNode's prev to null
+    // Set the poppedNode's prev to null
     // Decrement the length
     // Return the node
     public Node pop() {
@@ -47,18 +47,45 @@ public class DoublyLinkedList {
             return null;
         }
 
-        Node lastNode = this.tail;
-        if (length == 1) {
+        final Node poppedNode = this.tail;
+        if (this.length == 1) {
             this.head = null;
             this.tail = null;
         } else {
-            this.tail = lastNode.getPrev();
+            this.tail = poppedNode.getPrev();
             this.tail.setNext(null);
-            lastNode.setPrev(null);
+            poppedNode.setPrev(null);
         }
 
         this.length--;
-        return lastNode;
+        return poppedNode;
+    }
+
+    // Edge case: If length is equal to 0, return null
+    // Store the current head in shiftedNode
+    // Edge case: If length is equal to 1, set the head and tail to null
+    // Otherwise, update the head to be the next of shiftedNode
+    // Set head's prev to null
+    // Set shiftedNode's next to null
+    // Decrement the length
+    // Return the node
+    public Node shift() {
+        if (this.length == 0) {
+            return null;
+        }
+
+        final Node shiftedNode = this.head;
+        if (this.length == 1) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.head = shiftedNode.getNext();
+            this.head.setPrev(null);
+            shiftedNode.setNext(null);
+        }
+
+        this.length--;
+        return shiftedNode;
     }
 
     @Override
