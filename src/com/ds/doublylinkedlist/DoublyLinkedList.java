@@ -88,6 +88,29 @@ public class DoublyLinkedList {
         return shiftedNode;
     }
 
+    // Create a new node with the value passed to the function
+    // Edge case: If the length is 0, set the head and tail to be the new node
+    // Otherwise, set the prev property of the head to the new node
+    // Set the next property of the new node to the head
+    // Set the new node as the new head
+    // Increment the length
+    // Return the list
+    public <T> DoublyLinkedList unshift(final T val) {
+        final Node newNode = new Node(val);
+
+        if (this.length == 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            newNode.setNext(this.head);
+            this.head.setPrev(newNode);
+            this.head = newNode;
+        }
+
+        this.length++;
+        return this;
+    }
+
     @Override
     public String toString() {
         return this.head != null ? this.head.printAllNodes() : "";
