@@ -25,8 +25,7 @@ public class DoublyLinkedList {
             this.head = newNode;
             this.tail = newNode;
         } else {
-            this.tail.setNext(newNode);
-            newNode.setPrev(this.tail);
+            connectNodes(this.tail, newNode);
             this.tail = newNode;
         }
 
@@ -53,8 +52,7 @@ public class DoublyLinkedList {
             this.tail = null;
         } else {
             this.tail = poppedNode.getPrev();
-            this.tail.setNext(null);
-            poppedNode.setPrev(null);
+            disconnectNodes(this.tail, poppedNode);
         }
 
         this.length--;
@@ -80,8 +78,7 @@ public class DoublyLinkedList {
             this.tail = null;
         } else {
             this.head = shiftedNode.getNext();
-            this.head.setPrev(null);
-            shiftedNode.setNext(null);
+            disconnectNodes(shiftedNode, this.head);
         }
 
         this.length--;
@@ -102,13 +99,26 @@ public class DoublyLinkedList {
             this.head = newNode;
             this.tail = newNode;
         } else {
-            newNode.setNext(this.head);
-            this.head.setPrev(newNode);
+            connectNodes(newNode, this.head);
             this.head = newNode;
         }
 
         this.length++;
         return this;
+    }
+
+    // Sets the previous node's next property to the next node
+    // Sets the next node's prev property to the previous node
+    private void connectNodes(final Node prevNode, final Node nextNode) {
+        prevNode.setNext(nextNode);
+        nextNode.setPrev(prevNode);
+    }
+
+    // Sets the previous node's next property to null
+    // Sets the next node's prev property to null
+    private void disconnectNodes(final Node prevNode, final Node nextNode) {
+        prevNode.setNext(null);
+        nextNode.setPrev(null);
     }
 
     @Override
